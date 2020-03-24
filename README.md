@@ -6,7 +6,7 @@ En bil som går att styra med hjälp av en hemsida.
 
 ### Hemsida
 
-Hemsidan är skriven i Node.JS där back-end är gjord i Node.JS och front-end i HTML, CSS och JavaScript.
+Hemsidan består av en back-end och en front-end där back-end är gjord i Node.JS och front-end i HTML, CSS och JavaScript.
 
 #### Back-end
 
