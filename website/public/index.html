@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.min.js"></script>
+  </head>
+  <body>
+    <div id="joystick" style="position: relative; height: 100vh;"></div>
+    <script>
+      var static = nipplejs.create({
+        zone: document.getElementById("joystick"),
+        mode: "static",
+        position: { left: "50%", top: "50%" },
+        color: "red"
+      });
+    </script>
+  </body>
+</html>
