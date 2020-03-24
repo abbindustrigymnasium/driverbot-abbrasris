@@ -10,6 +10,18 @@
   <body>
     <div id="joystick" style="position: relative; height: 100vh;"></div>
     <script>
+      const sendData = (angle, force) => {
+        const data = {
+          angle: angle,
+          force: force
+        };
+
+        fetch("/send-data", {
+          method: "POST",
+          body: JSON.stringify(data)
+        });
+      };
+
       const joystick = nipplejs.create({
         zone: document.getElementById("joystick"),
         mode: "static",
@@ -24,6 +36,8 @@
         const force = data.force;
 
         console.log(angle, force);
+
+        sendData(angle, force);
       });
 
       joystick.on("end", (e, data) => {
