@@ -21,7 +21,7 @@ Hemsidan är skriven i Node.JS där back-end är gjord i Node.JS och front-end i
 
 | Namn | Version | Beskrivning |
 |---|---|---|
-| [nippletjs](https://github.com/yoannmoinet/nipplejs) | ![](https://img.shields.io/npm/v/nipplejs.svg) | A virtual joystick for touch capable interfaces.
+| [nipplejs](https://github.com/yoannmoinet/nipplejs) | ![](https://img.shields.io/npm/v/nipplejs.svg) | A virtual joystick for touch capable interfaces.
 
 
 ## Tidslinje
