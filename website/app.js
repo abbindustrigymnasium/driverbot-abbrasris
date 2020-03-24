@@ -29,6 +29,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/send-data", jsonParser, (req, res) => {
+  // TODO: Make sure MQTT is connected (or wait for MQTT to connect before starting app)
+  // TODO: Validate data
+
+  const data = req.body;
+  client.publish(process.env.MQTT_TOPIC, JSON.stringify(data));
+
   console.log(req.body);
   res.send("OK");
   // res.status(200).send("");
