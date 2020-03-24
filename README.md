@@ -2,7 +2,7 @@
 
 En bil som går att styra med hjälp av en hemsida.
 
-## Krav
+## Teknologier
 
 ### Hemsida
 
