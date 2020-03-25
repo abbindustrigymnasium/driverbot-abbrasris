@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.min.js"></script>
+  </head>
+  <body>
+    <div id="joystick" style="position: relative; height: 100vh;"></div>
+    <script>
+      const sendData = (angle, force) => {
+        const data = {
+          angle: angle,
+          force: force
+        };
+
+        fetch("/send-data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      const joystick = nipplejs.create({
+        zone: document.getElementById("joystick"),
+        mode: "static",
+        position: { left: "50%", top: "50%" },
+        color: "blue"
+      });
+
+      joystick.on("move", (e, data) => {
+        // force: 0 - 5
+
+        const angle = data.angle.degree;
+        const force = data.force;
+
+        console.log(angle, force);
+
+        sendData(angle, force);
+      });
+
+      joystick.on("end", (e, data) => {
+        console.log("end");
+        // TODO: reset mqtt values
+      });
+
+      console.log(joystick);
+    </script>
+  </body>
+</html>
