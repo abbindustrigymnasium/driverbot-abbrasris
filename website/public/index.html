@@ -10,10 +10,24 @@
   <body>
     <div id="joystick" style="position: relative; height: 100vh;"></div>
     <script>
+      const adjust = (value, fromLow, fromHigh, toLow, toHigh) => {
+        if (value <= fromLow) return toLow;
+        if (value >= fromHigh) return toHigh;
+
+        return Math.round(
+          toLow +
+            ((toHigh - fromLow) * (value - fromLow)) / (fromHigh - fromLow)
+        );
+      };
+
       const sendData = (angle, force) => {
+        const speed = adjust(force, 0, 5, 0, 1024);
+
+        // TODO: compare values with last values and only send if they're different
+
         const data = {
           angle: angle,
-          force: force
+          speed: speed
         };
 
         fetch("/send-data", {
@@ -33,22 +47,21 @@
       });
 
       joystick.on("move", (e, data) => {
-        // force: 0 - 5
-
         const angle = data.angle.degree;
         const force = data.force;
 
-        console.log(angle, force);
+        // console.log(angle, force);
 
         sendData(angle, force);
       });
 
       joystick.on("end", (e, data) => {
-        console.log("end");
-        // TODO: reset mqtt values
+        // TODO: reset only speed
+
+        sendData(0, 0);
       });
 
-      console.log(joystick);
+      // console.log(joystick);
     </script>
   </body>
 </html>

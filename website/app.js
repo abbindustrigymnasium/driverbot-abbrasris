@@ -33,6 +33,7 @@ app.post("/send-data", jsonParser, (req, res) => {
   // TODO: Validate data
 
   const data = req.body;
+
   client.publish(process.env.MQTT_TOPIC, JSON.stringify(data));
 
   console.log(req.body);
