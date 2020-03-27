@@ -29,7 +29,8 @@ Bilen består av en NodeMCU där koden är skriven i Arduino.
 
 | Namn                                                | Version                                        | Beskrivning                                      |
 | --------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
-| [EspMQTTClient](https://github.com/plapointe6/EspMQTTClient) | ![](https://www.ardu-badge.com/badge/EspMQTTClient.svg) | A virtual joystick for touch capable interfaces. |
+| [EspMQTTClient](https://github.com/plapointe6/EspMQTTClient) | ![](https://www.ardu-badge.com/badge/EspMQTTClient.svg) | 
+Wifi and MQTT handling for ESP8266 and ESP32. |
 | [ArduinoJson](https://github.com/bblanchon/ArduinoJson) | ![](https://www.ardu-badge.com/badge/ArduinoJson.svg) | A C++ JSON library for Arduino and IoT (Internet Of Things). |
 
 ## Tidslinje
