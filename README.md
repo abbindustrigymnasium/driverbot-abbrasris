@@ -23,6 +23,15 @@ Hemsidan består av en back-end och en front-end där back-end är gjord i Node.
 | --------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
 | [nipplejs](https://github.com/yoannmoinet/nipplejs) | ![](https://img.shields.io/npm/v/nipplejs.svg) | A virtual joystick for touch capable interfaces. |
 
+### Bil
+
+Bilen består av en NodeMCU där koden är skriven i Arduino.
+
+| Namn                                                | Version                                        | Beskrivning                                      |
+| --------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
+| [EspMQTTClient](https://github.com/plapointe6/EspMQTTClient) | ![](https://www.ardu-badge.com/badge/EspMQTTClient.svg) | A virtual joystick for touch capable interfaces. |
+| [ArduinoJson](https://github.com/bblanchon/ArduinoJson) | ![](https://www.ardu-badge.com/badge/ArduinoJson.svg) | A C++ JSON library for Arduino and IoT (Internet Of Things). |
+
 ## Tidslinje
 
 2020-03-24
