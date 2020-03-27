@@ -1,5 +1,6 @@
 #include ".\conf.h"
 #include "EspMQTTClient.h"
+#include <ArduinoJson.h>
 
 EspMQTTClient client(
     WIFI_SSID,
@@ -15,6 +16,21 @@ void onConnectionEstablished()
 {
   client.subscribe(MQTT_TOPIC, [] (const String &payload)  {
     Serial.println(payload);
+
+    // Allocate the JSON document
+    StaticJsonDocument<200> doc;
+
+    // Deserialize the JSON document
+    DeserializationError error = deserializeJson(doc, payload);
+  
+    // Test if parsing succeeds.
+    if (error) {
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.c_str());
+      return;
+    }
+
+    double force = doc["force"];
   });
 }
 
