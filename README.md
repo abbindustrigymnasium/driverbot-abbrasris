@@ -83,3 +83,9 @@ Bilen består av en NodeMCU där koden är skriven i Arduino.
 2020-03-27
 
 - Lade till en funktion som tar emot MQTT-värdena på mikrokontrollen.
+
+
+2020-03-31
+
+- Ändrade vilka värden som skickas till mikrokontrollen.
+- Lade till information om installation.
