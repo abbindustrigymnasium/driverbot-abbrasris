@@ -50,9 +50,9 @@
         const angle = data.angle.degree;
         const force = data.force;
 
-        // console.log(angle, force);
+        console.log(data.direction);
 
-        sendData(angle, force);
+        // sendData(angle, force);
       });
 
       joystick.on("end", (e, data) => {
