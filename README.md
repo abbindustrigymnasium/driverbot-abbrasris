@@ -2,6 +2,46 @@
 
 En bil som går att styra med hjälp av en hemsida.
 
+## Installation
+
+### Hemsida
+
+Skapa en fil `.env` i mappen `website` och fyll i uppgifter till MQTT.
+
+```
+MQTT_HOST = ""
+MQTT_USERNAME = ""
+MQTT_PASSWORD = ""
+MQTT_TOPIC = ""
+```
+
+Installera de bibliotek som används.
+
+```
+npm i
+```
+
+Starta servern.
+
+```
+node app.js
+```
+
+### Arduino
+
+Skapa en fil `conf.h` i mappen `arduino` och fyll i uppgifter till WiFi och MQTT.
+
+```
+#define WIFI_SSID ""
+#define WIFI_PWD ""
+
+#define MQTT_USERNAME ""
+#define MQTT_PWD ""
+#define MQTT_TOPIC ""
+```
+
+Ladda upp till mikrokontrollern.
+
 ## Teknologier
 
 ### Hemsida
@@ -43,3 +83,9 @@ Bilen består av en NodeMCU där koden är skriven i Arduino.
 2020-03-27
 
 - Lade till en funktion som tar emot MQTT-värdena på mikrokontrollen.
+
+
+2020-03-31
+
+- Ändrade vilka värden som skickas till mikrokontrollen.
+- Lade till information om installation.
