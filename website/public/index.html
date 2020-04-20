@@ -8,7 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.min.js"></script>
   </head>
   <body>
-    <div id="joystick" style="position: relative; height: 100vh;"></div>
+    <div id="joystick-speed" class="joystick"></div>
+    <div id="joystick-direction"></div>
     <script>
       const adjust = (value, fromLow, fromHigh, toLow, toHigh) => {
         if (value <= fromLow) return toLow;
@@ -27,41 +28,74 @@
 
         const data = {
           angle: angle,
-          speed: speed
+          speed: speed,
         };
 
         fetch("/send-data", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
       };
 
-      const joystick = nipplejs.create({
-        zone: document.getElementById("joystick"),
+      const joystickSpeed = nipplejs.create({
+        color: "blue",
+        zone: document.getElementById("joystick-speed"),
+        position: { left: "30%", top: "50%" },
         mode: "static",
-        position: { left: "50%", top: "50%" },
-        color: "blue"
+        lockY: true,
       });
 
-      joystick.on("move", (e, data) => {
-        const angle = data.angle.degree;
-        const force = data.force;
-
-        // console.log(data.direction);
-
-        sendData(angle, force);
+      const joystickDirection = nipplejs.create({
+        color: "blue",
+        zone: document.getElementById("joystick-direction"),
+        position: { right: "30%", top: "50%" },
+        mode: "static",
+        lockX: true,
       });
 
-      joystick.on("end", (e, data) => {
-        // TODO: reset only speed
+      // joystick.on("move", (e, data) => {
+      //   const angle = data.angle.degree;
+      //   const force = data.force;
 
-        sendData(0, 0);
-      });
+      //   let angle; //
 
-      // console.log(joystick);
+      //   if (data.direction.y === "up") {
+      //     // set motor speed to positive
+
+      //     if (data.direction.x === "left") {
+      //     }
+      //   } else {
+      //     // set motor speed to negative
+      //   }
+
+      //   // if (angle <= 135 && angle >= 45) {
+      //   //   console.log("up");
+      //   // } else if (
+      //   //   (angle <= 45 && angle >= 0) ||
+      //   //   (angle <= 360 && angle >= 315)
+      //   // ) {
+      //   //   console.log("right");
+      //   // } else if (angle <= 315 && angle >= 225) {
+      //   //   console.log("down");
+      //   // } else {
+      //   //   console.log("left");
+      //   // }
+
+      //   // console.log(data.direction);
+
+      //   sendData(angle, force);
+      // });
+
+      // joystick.on("end", (e, data) => {
+      //   // TODO: reset only speed
+
+      //   sendData(0, 0);
+      // });
+
+      // // console.log(joystick);
     </script>
   </body>
 </html>
