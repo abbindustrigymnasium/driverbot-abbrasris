@@ -21,15 +21,8 @@
         );
       };
 
-      const sendData = (angle, force) => {
-        const speed = adjust(force, 0, 5, 0, 1024);
-
+      const sendData = (data) => {
         // TODO: compare values with last values and only send if they're different
-
-        const data = {
-          angle: angle,
-          speed: speed,
-        };
 
         fetch("/send-data", {
           method: "POST",
@@ -56,46 +49,35 @@
         lockX: true,
       });
 
-      // joystick.on("move", (e, data) => {
-      //   const angle = data.angle.degree;
-      //   const force = data.force;
+      joystickSpeed.on("move", (e, data) => {
+        let speed;
 
-      //   let angle; //
+        if (data.direction.y === "up") {
+          speed = 1;
+        } else {
+          speed = -1;
+        }
 
-      //   if (data.direction.y === "up") {
-      //     // set motor speed to positive
+        sendData({ speed: speed });
+      });
 
-      //     if (data.direction.x === "left") {
-      //     }
-      //   } else {
-      //     // set motor speed to negative
-      //   }
+      joystickSpeed.on("end", () => {
+        sendData({ speed: 0 });
+      });
 
-      //   // if (angle <= 135 && angle >= 45) {
-      //   //   console.log("up");
-      //   // } else if (
-      //   //   (angle <= 45 && angle >= 0) ||
-      //   //   (angle <= 360 && angle >= 315)
-      //   // ) {
-      //   //   console.log("right");
-      //   // } else if (angle <= 315 && angle >= 225) {
-      //   //   console.log("down");
-      //   // } else {
-      //   //   console.log("left");
-      //   // }
+      joystickDirection.on("move", (e, data) => {
+        let direction = data.direction.x;
+        let force;
 
-      //   // console.log(data.direction);
+        if (direction === "right") {
+          force = data.force;
+        } else {
+          force = -data.force;
+        }
 
-      //   sendData(angle, force);
-      // });
-
-      // joystick.on("end", (e, data) => {
-      //   // TODO: reset only speed
-
-      //   sendData(0, 0);
-      // });
-
-      // // console.log(joystick);
+        force = adjust(force * 10, -15, 15, -100, 100);
+        sendData({ direction: force });
+      });
     </script>
   </body>
 </html>

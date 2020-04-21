@@ -92,3 +92,7 @@ Bilen består av en NodeMCU där koden är skriven i Arduino.
 2020-04-20
 
 - Lade till två styrspakar, en för hastighet och en för riktning, istället för en
+
+2020-04-21
+
+- Fixade MQTT för styrspakarna
