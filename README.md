@@ -67,10 +67,10 @@ Hemsidan består av en back-end och en front-end där back-end är gjord i Node.
 
 Bilen består av en NodeMCU där koden är skriven i Arduino.
 
-| Namn                                                | Version                                        | Beskrivning                                      |
-| --------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
-| [EspMQTTClient](https://github.com/plapointe6/EspMQTTClient) | ![](https://www.ardu-badge.com/badge/EspMQTTClient.svg) | Wifi and MQTT handling for ESP8266 and ESP32. |
-| [ArduinoJson](https://github.com/bblanchon/ArduinoJson) | ![](https://www.ardu-badge.com/badge/ArduinoJson.svg) | A C++ JSON library for Arduino and IoT (Internet Of Things). |
+| Namn                                                         | Version                                                 | Beskrivning                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------ |
+| [EspMQTTClient](https://github.com/plapointe6/EspMQTTClient) | ![](https://www.ardu-badge.com/badge/EspMQTTClient.svg) | Wifi and MQTT handling for ESP8266 and ESP32.                |
+| [ArduinoJson](https://github.com/bblanchon/ArduinoJson)      | ![](https://www.ardu-badge.com/badge/ArduinoJson.svg)   | A C++ JSON library for Arduino and IoT (Internet Of Things). |
 
 ## Tidslinje
 
@@ -84,8 +84,11 @@ Bilen består av en NodeMCU där koden är skriven i Arduino.
 
 - Lade till en funktion som tar emot MQTT-värdena på mikrokontrollen.
 
-
 2020-03-31
 
 - Ändrade vilka värden som skickas till mikrokontrollen.
 - Lade till information om installation.
+
+2020-04-20
+
+- Lade till två styrspakar, en för hastighet och en för riktning, istället för en
