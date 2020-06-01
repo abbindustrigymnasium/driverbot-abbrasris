@@ -55,11 +55,11 @@ joystickSpeed.on("move", (e, data) => {
 
   lastSpeed = speed;
 
-  sendData({ speed: speed });
+  sendData(["speed", speed]);
 });
 
 joystickSpeed.on("end", () => {
-  sendData({ speed: 0 });
+  sendData(["speed", 0]);
 });
 
 let lastForce;
@@ -86,5 +86,5 @@ joystickDirection.on("move", (e, data) => {
 
   lastForce = force;
 
-  sendData({ direction: force });
+  sendData(["direction", force]);
 });

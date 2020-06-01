@@ -21,7 +21,7 @@ int motorDirection = 0;
 void onConnectionEstablished()
 {
   client.subscribe(MQTT_TOPIC, [] (const String &payload)  {
-    // Serial.println(payload);
+    Serial.println(payload);
 
     // Allocate the JSON document
     StaticJsonDocument<200> doc;
@@ -36,7 +36,20 @@ void onConnectionEstablished()
       return;
     }
 
-    Serial.println(doc["speed"]);
+    String type = doc[0];
+
+    if (type == "speed") {
+      motorSpeed = doc[1];
+    } else if (type == "direction") {
+      motorDirection = doc[1];
+    }
+    
+    Serial.println(motorSpeed);
+    Serial.println(motorDirection);
+    
+    return;
+
+    // Serial.println(doc[0]);
 
     //motorSpeed = doc["speed"];
 
