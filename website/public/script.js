@@ -8,8 +8,6 @@ const adjust = (value, fromLow, fromHigh, toLow, toHigh) => {
 };
 
 const sendData = (data) => {
-  // TODO: compare values with last values and only send if they're different
-
   fetch("/send-data", {
     method: "POST",
     headers: {
@@ -35,14 +33,27 @@ const joystickDirection = nipplejs.create({
   lockX: true,
 });
 
+let lastSpeed;
+
 joystickSpeed.on("move", (e, data) => {
+  let direction = data.direction ? data.direction.y : "middle";
   let speed;
 
-  if (data.direction.y === "up") {
+  if (direction === "up") {
     speed = 1;
-  } else {
+  } else if (direction === "down") {
     speed = -1;
+  } else {
+    speed = 0;
   }
+
+  // Check if speed hasn't changed since last time
+  if (speed === lastSpeed) {
+    lastSpeed = speed;
+    return;
+  }
+
+  lastSpeed = speed;
 
   sendData({ speed: speed });
 });
@@ -51,16 +62,29 @@ joystickSpeed.on("end", () => {
   sendData({ speed: 0 });
 });
 
+let lastForce;
+
 joystickDirection.on("move", (e, data) => {
-  let direction = data.direction.x;
+  let direction = data.direction ? data.direction.x : "middle";
   let force;
 
   if (direction === "right") {
     force = data.force;
-  } else {
+  } else if (direction === "left") {
     force = -data.force;
+  } else {
+    force = 0;
   }
 
   force = adjust(force * 10, -15, 15, -100, 100);
+
+  // Chek if force is different from last time
+  if (force === lastForce) {
+    lastForce = force;
+    return;
+  }
+
+  lastForce = force;
+
   sendData({ direction: force });
 });
